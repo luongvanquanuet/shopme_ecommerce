@@ -1,0 +1,14 @@
+package com.shopme.admin.test;
+
+public class quan {
+	public static void main(String[] args) {
+        //Person obj = new Person();
+        //System.out.println(obj.name)
+		FieldBean  fieldBean ;
+				//context.getBean(FieldBean.class);
+		fieldBean.field;
+		fieldBean.print();
+		
+    }
+
+}

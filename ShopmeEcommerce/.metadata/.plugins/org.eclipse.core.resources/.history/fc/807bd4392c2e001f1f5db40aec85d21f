@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: page_head('Users - Shopme Admin')" />
+<body>
+	<h1>Welcome to Shopme Admin Control Panel</h1>
+<div class="container-fluid">
+	<div th:replace="navigation :: menu"></div>
+	<div>
+		<a th:href="@{/users/new}" class="fas fa-user-plus fa-2x icon-dark mr-2">Create New user</a>
+		<h2>manage user</h2>	
+	</div>
+	<div th:if="${message != null}" class="alert alert-success text-center">
+		<!--[[${message}]]-->
+	</div>
+	
+	<div>
+		<table class="table table-bordered table-striped table-hover table-responsive-xl">
+			<thead  class="thead-dark">
+				<tr>
+					<th>User ID</th>
+					<th>Photos</th>
+					<th>E-mail</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Roles</th>
+					<th>Enabled</th>
+					<th></th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<tr th:each="user : ${listUser}">
+					<td>[[${user.id}]]</td>
+					<td><span class="fas fa-portrait fa-3x icon-dark"></span></td>
+					<td>[[${user.email}]]</td>
+					<td>[[${user.firstName}]]</td>
+					<td>[[${user.lastName}]]</td>
+					<td>[[${user.roles}]]</td>
+					<td>
+						<a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" 
+							th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+							title="Disable this user"
+							></a>
+
+						<a th:if="${user.enabled == false}" class="fas fa-circle fa-2x icon-dark" 
+							th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+							title="Enable this user"
+							></a>
+					</td>
+					<td>
+						<!--<a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/'+${user.id}"></a>-->
+						<a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}"
+							title="Edit this user"></a>
+						<!--&nbsp; -->
+						<a class="fas fa-trash fa-2x icon-dark" href=""></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+
+	<div th:replace="fragments :: footer"></div>
+
+</div>
+</body>
+</html>
